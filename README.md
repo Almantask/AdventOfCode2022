@@ -1,4 +1,4 @@
-# AdventOfCode2021
+# AdventOfCode2022
 
 [![license](https://img.shields.io/github/license/Almantask/AdventOfCode2021.svg)](https://github.com/Almantask/AdventOfCode2022/blob/main/LICENSE)
 [![HitCount](http://hits.dwyl.com/Almantask/AdventOfCode2021.svg)](http://hits.dwyl.com//Almantask/AdventOfCode2022)
