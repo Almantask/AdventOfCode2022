@@ -8,17 +8,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Days\1.txt" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <EmbeddedResource Include="Days\1.txt">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\AdventOfCode\AdventOfCode.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Days\1.txt">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>
