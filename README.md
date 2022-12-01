@@ -1,5 +1,6 @@
 # AdventOfCode2022
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c5a157abc279401a85dea579aa05ef7b)](https://app.codacy.com/gh/Almantask/AdventOfCode2022?utm_source=github.com&utm_medium=referral&utm_content=Almantask/AdventOfCode2022&utm_campaign=Badge_Grade_Settings)
 [![license](https://img.shields.io/github/license/Almantask/AdventOfCode2021.svg)](https://github.com/Almantask/AdventOfCode2022/blob/main/LICENSE)
 [![HitCount](http://hits.dwyl.com/Almantask/AdventOfCode2021.svg)](http://hits.dwyl.com//Almantask/AdventOfCode2022)
 
