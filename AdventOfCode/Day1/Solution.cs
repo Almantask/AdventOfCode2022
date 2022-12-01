@@ -43,12 +43,12 @@ namespace AdventOfCode.Day1
     {
         public long Total { get; }
 
-        private readonly long[] Calories;
+        private readonly long[] _calories;
 
         public Elf(IEnumerable<long> calories)
         {
-            Calories = calories.ToArray();
-            Total = Calories.Sum();
+            _calories = calories.ToArray();
+            Total = _calories.Sum();
         }
     }
 }
