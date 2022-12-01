@@ -32,34 +32,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="D1\Day1Tests.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
 	  <None Update="Input\Day1\Example.txt">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
-	  <None Update="Input\Day2\Example.txt">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
-	  <None Update="Input\Day8\Example.txt">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
-	  <None Update="Input\Day7\Example.txt">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
-	  <None Update="Input\Day6\Example.txt">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
-	  <None Update="Input\Day5\Example.txt">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
-	  <None Update="Input\Day4\Example.txt">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
-	  <None Update="Input\Day3\Example.txt">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>
