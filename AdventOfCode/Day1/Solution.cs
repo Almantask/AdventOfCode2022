@@ -13,7 +13,7 @@ namespace AdventOfCode.Day1
         public long Solve(string input)
         {
             return Input
-                .ToElfs(input)
+                .ToElves(input)
                 .Max(e => e.Total);
         }
     }
@@ -24,7 +24,7 @@ namespace AdventOfCode.Day1
         {
             const int countOfElvesWithHighestCalories = 3;
             return Input
-                .ToElfs(input)
+                .ToElves(input)
                 .OrderByDescending(elf => elf.Total)
                 .Take(countOfElvesWithHighestCalories)
                 .Sum(elf => elf.Total);
@@ -33,9 +33,9 @@ namespace AdventOfCode.Day1
 
     public static class Input
     {
-        public static Elf[] ToElfs(string input) => input
+        public static Elf[] ToElves(string input) => input
             .SplitByDoubleEndOfLine()
-            .Select(elfsCalories => new Elf(elfsCalories.ToNumbersSplitByEndOfLine()))
+            .Select(elfWithCals => new Elf(elfWithCals.ToNumbersSplitByEndOfLine()))
             .ToArray();
     }
 
