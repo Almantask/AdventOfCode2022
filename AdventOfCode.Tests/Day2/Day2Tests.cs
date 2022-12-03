@@ -6,24 +6,24 @@ namespace AdventOfCode.Tests.Day2
     {
         [Theory]
         [MemberData(nameof(Day1Part1MaxSumOfCalories))]
-        public void Part1_Solve_ReturnsMaxSumOfCalories(string calories, long expectedMax)
+        public void Part1_Solve_Returns_TotalScoreOfPlayer2(string strategyGuide, long expectedTotalScore)
         {
             var part1 = new Part1();
 
-            var measureIncreases = part1.Solve(calories);
+            var totalScore = part1.Solve(strategyGuide);
 
-            measureIncreases.Should().Be(expectedMax);
+            totalScore.Should().Be(expectedTotalScore);
         }
 
         [Theory]
         [MemberData(nameof(Day1Part2ExpectedSumOfTop3SumsOfCalories))]
-        public void Part2_Solve_ReturnsIncreasesCountOverAWindowOf3(string calories, long expectedTop3Max)
+        public void Part2_Solve_ReturnsTotalScoreOfPlayer2(string strategyGuide, long expectedTotalScore)
         {
             var part2 = new Part2();
 
-            var measureIncreases = part2.Solve(calories);
+            var measureIncreases = part2.Solve(strategyGuide);
 
-            measureIncreases.Should().Be(expectedTop3Max);
+            measureIncreases.Should().Be(expectedTotalScore);
         }
 
         public static IEnumerable<object[]> Day1Part1MaxSumOfCalories
