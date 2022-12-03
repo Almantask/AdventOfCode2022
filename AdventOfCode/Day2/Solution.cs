@@ -12,10 +12,10 @@ namespace AdventOfCode.Day2
     {
         public long Solve(string input)
         {
-            var rounds = RockPaperScissorsGame.StrategyGuide.ParseRoundsFrom(input);
-            var game = new RockPaperScissorsGame(rounds);
+            var guide = new RockPaperScissorsGame.StrategyGuideV1(input);
+            var game = new RockPaperScissorsGame(guide.Rounds);
 
-            return game.TotalScorePlayer1;
+            return game.TotalScorePlayer2;
         }
     }
 

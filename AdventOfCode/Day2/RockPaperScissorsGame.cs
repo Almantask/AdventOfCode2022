@@ -4,37 +4,103 @@ namespace AdventOfCode.Day2;
 
 public class RockPaperScissorsGame
 {
-    public int TotalScorePlayer1 { get; }
+    /// <summary>
+    /// Your score.
+    /// </summary>
+    public int TotalScorePlayer2 { get; }
 
     public RockPaperScissorsGame(IEnumerable<Round> rounds)
     {
-        TotalScorePlayer1 = rounds.Sum(round => round.Points.Play1);
+        TotalScorePlayer2 = rounds.Sum(round => round.Points.Player2);
     }
 
-    public static class StrategyGuide
+    /// <summary>
+    /// Strategy guide with plays to achieve a specified outcome.
+    /// </summary>
+    public class StrategyGuideV2 : StrategyGuide
     {
-        private static readonly Dictionary<string, IPlay> _playAliases = new()
+        public StrategyGuideV2(string strategyGuide) : base(strategyGuide)
         {
-            { "A", Play.Rock },
-            { "B", Play.Paper },
-            { "C", Play.Scissors }
+        }
+
+        private readonly Dictionary<string, Play.Outcome> _neededOutcomeAliases = new()
+        {
+            { "X", Play.Outcome.Loose },
+            { "Y", Play.Outcome.Draw },
+            { "Z", Play.Outcome.Win }
         };
 
-        private static readonly Dictionary<string, IPlay> _counterAliases = new()
+        protected override Round ParseRoundFromLineInGuide(string[] lineInGuide)
+        {
+            var play1 = _playAliases[lineInGuide[0]];
+            var outcome = _neededOutcomeAliases[lineInGuide[1]];
+
+            IPlay playToMake;
+            if (outcome == Play.Outcome.Draw)
+            {
+                playToMake = play1;
+            }
+            else if (outcome == Play.Outcome.Loose)
+            {
+                playToMake = play1.CounterFor;
+            }
+            else
+            {
+                playToMake = play1.CounterFor.CounterFor;
+            }
+
+            return new Round(play1, playToMake);
+        }
+    }
+
+    /// <summary>
+    /// Strategy guide with plays recommended to play.
+    /// </summary>
+    public class StrategyGuideV1 : StrategyGuide
+    {
+        public StrategyGuideV1(string strategyGuide) : base(strategyGuide)
+        {
+        }
+
+        private readonly Dictionary<string, IPlay> _counterAliases = new()
         {
             { "X", Play.Rock },
             { "Y", Play.Paper },
             { "Z", Play.Scissors }
         };
 
-        public static Round[] ParseRoundsFrom(string strategyGuide)
+        protected override Round ParseRoundFromLineInGuide(string[] lineInGuide)
+        {
+            return new Round(_playAliases[lineInGuide[0]], _counterAliases[lineInGuide[1]]);
+        }
+    }
+
+    public abstract class StrategyGuide
+    {
+        public IEnumerable<Round> Rounds { get; }
+
+        protected StrategyGuide(string strategyGuide)
+        {
+            Rounds = ParseRoundsFrom(strategyGuide);
+        }
+
+        protected static readonly Dictionary<string, IPlay> _playAliases = new()
+        {
+            { "A", Play.Rock },
+            { "B", Play.Paper },
+            { "C", Play.Scissors }
+        };
+
+        protected IEnumerable<Round> ParseRoundsFrom(string strategyGuide)
         {
             return strategyGuide
                 .SplitByEndOfLine()
                 .Select(x => x.Split(' '))
-                .Select(x => new Round(_playAliases[x[0]], _counterAliases[x[1]]))
+                .Select(ParseRoundFromLineInGuide)
                 .ToArray();
         }
+
+        protected abstract Round ParseRoundFromLineInGuide(string[] lineInGuide);
     }
 
     public class Round
@@ -42,12 +108,12 @@ public class RockPaperScissorsGame
         public struct Score
         {
             public readonly int Play1;
-            public readonly int Play2;
+            public readonly int Player2;
 
-            public Score(int play1, int play2)
+            public Score(int play1, int player2)
             {
                 Play1 = play1;
-                Play2 = play2;
+                Player2 = player2;
             }
         }
 
@@ -79,6 +145,7 @@ public class RockPaperScissorsGame
     {
         Play.Outcome Against(IPlay other);
         int Points { get; }
+        IPlay CounterFor { get; }
     }
 
     public class Play : IPlay
@@ -115,7 +182,7 @@ public class RockPaperScissorsGame
         }
 
         public int Points { get; }
-        private IPlay CounterFor { get; set; }
+        public IPlay CounterFor { get; set; }
 
         public Outcome Against(IPlay other)
         {

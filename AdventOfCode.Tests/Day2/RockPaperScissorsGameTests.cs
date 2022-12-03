@@ -10,7 +10,7 @@ namespace AdventOfCode.Tests.Day2
     public class RockPaperScissorsGameTests
     {
         [Fact]
-        public void TotalScore_ReturnsSumOfRoundScoreForPlayer1()
+        public void TotalScore_ReturnsSumOfRoundScoreForPlayer2()
         {
             IEnumerable<RockPaperScissorsGame.Round> rounds = new[]
             {
@@ -21,7 +21,7 @@ namespace AdventOfCode.Tests.Day2
 
             var game = new RockPaperScissorsGame(rounds);
 
-            game.TotalScorePlayer1.Should().Be(24, "Total Score = Sum of all rounds; Round = Shape pts + Outcome points");
+            game.TotalScorePlayer2.Should().Be(6, "Total Score = Sum of all rounds; Round = Shape pts + Outcome points. (Lost all)");
         }
     }
 }

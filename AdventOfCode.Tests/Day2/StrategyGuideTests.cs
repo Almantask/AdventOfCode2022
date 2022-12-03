@@ -17,7 +17,7 @@ namespace AdventOfCode.Tests.Day2
 B X
 C Z";
 
-            var rounds = RockPaperScissorsGame.StrategyGuide.ParseRoundsFrom(strategyGuide);
+            var guide = new RockPaperScissorsGame.StrategyGuideV1(strategyGuide);
 
             var expectedRounds = new RockPaperScissorsGame.Round[]
             {
@@ -26,7 +26,7 @@ C Z";
                 new(RockPaperScissorsGame.Play.Scissors, RockPaperScissorsGame.Play.Scissors)
             };
 
-            rounds.Should().BeEquivalentTo(expectedRounds);
+            guide.Rounds.Should().BeEquivalentTo(expectedRounds);
         }
     }
 }
