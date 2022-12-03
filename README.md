@@ -3,7 +3,7 @@
 [![license](https://img.shields.io/github/license/Almantask/AdventOfCode2021.svg)](https://github.com/Almantask/AdventOfCode2022/blob/main/LICENSE)
 [![HitCount](http://hits.dwyl.com/Almantask/AdventOfCode2021.svg)](http://hits.dwyl.com//Almantask/AdventOfCode2022)
 
-[![codecov](https://codecov.io/gh/Almantask/AdventOfCode2021/branch/main/graph/badge.svg?token=AKOYAXKSH7)](https://codecov.io/gh/Almantask/AdventOfCode2021)
+[![codecov](https://codecov.io/gh/Almantask/AdventOfCode2022/branch/main/graph/badge.svg?token=0QKB5JAGYE)](https://codecov.io/gh/Almantask/AdventOfCode2022)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/c9a078ac6955471f8705d28e16c176fc)](https://www.codacy.com/gh/Almantask/AdventOfCode2022/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Almantask/AdventOfCode2022&amp;utm_campaign=Badge_Grade)
 
 https://adventofcode.com/2022 solutions
