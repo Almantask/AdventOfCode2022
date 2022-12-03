@@ -20,11 +20,11 @@ public class RockPaperScissorsGame
             { "C", Play.Scissors }
         };
 
-        private static readonly Dictionary<string, string> _counterAliases = new()
+        private static readonly Dictionary<string, IPlay> _counterAliases = new()
         {
-            { "Y", "B" },
-            { "X", "C" },
-            { "Z", "A" }
+            { "X", Play.Rock },
+            { "Y", Play.Paper },
+            { "Z", Play.Scissors }
         };
 
         public static Round[] ParseRoundsFrom(string strategyGuide)
@@ -32,13 +32,8 @@ public class RockPaperScissorsGame
             return strategyGuide
                 .SplitByEndOfLine()
                 .Select(x => x.Split(' '))
-                .Select(x => ToAround(x[0], x[1]))
+                .Select(x => new Round(_playAliases[x[0]], _counterAliases[x[1]]))
                 .ToArray();
-
-            static Round ToAround(string playAlias, string counterAlias)
-            {
-                return new Round(_playAliases[playAlias], _playAliases[_counterAliases[counterAlias]]);
-            }
         }
     }
 

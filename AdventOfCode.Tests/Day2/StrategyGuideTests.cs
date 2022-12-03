@@ -22,8 +22,8 @@ C Z";
             var expectedRounds = new RockPaperScissorsGame.Round[]
             {
                 new(RockPaperScissorsGame.Play.Rock, RockPaperScissorsGame.Play.Paper),
-                new(RockPaperScissorsGame.Play.Paper, RockPaperScissorsGame.Play.Scissors),
-                new(RockPaperScissorsGame.Play.Scissors, RockPaperScissorsGame.Play.Rock)
+                new(RockPaperScissorsGame.Play.Paper, RockPaperScissorsGame.Play.Rock),
+                new(RockPaperScissorsGame.Play.Scissors, RockPaperScissorsGame.Play.Scissors)
             };
 
             rounds.Should().BeEquivalentTo(expectedRounds);

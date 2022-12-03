@@ -1,4 +1,4 @@
-﻿using AdventOfCode.Day1;
+﻿using AdventOfCode.Day2;
 
 namespace AdventOfCode.Tests.Day2
 {
@@ -30,7 +30,7 @@ namespace AdventOfCode.Tests.Day2
         {
             get
             {
-                yield return Expect(day: 2, file: "Example", result: 24000);
+                yield return Expect(day: 2, file: "Example", result: 15);
             }
         }
 
