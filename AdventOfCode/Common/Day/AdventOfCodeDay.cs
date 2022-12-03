@@ -15,7 +15,6 @@
         {
             var input = File.ReadAllText(@$"Days/{Day}.txt");
 
-
             var part1 = new TPart1();
             var part2 = new TPart2();
 
