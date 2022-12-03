@@ -13,7 +13,7 @@
 
         public void Solve()
         {
-            var input = File.ReadAllText(@$"Days\{Day}.txt");
+            var input = File.ReadAllText(@$"Days/{Day}.txt");
 
 
             var part1 = new TPart1();
