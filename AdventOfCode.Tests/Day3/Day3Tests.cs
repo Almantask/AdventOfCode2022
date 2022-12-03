@@ -1,8 +1,8 @@
 ﻿using AdventOfCode.Day1;
 
-namespace AdventOfCode.Tests.Day1
+namespace AdventOfCode.Tests.Day3
 {
-    public class Day1Tests
+    public class Day3Tests
     {
         [Theory]
         [MemberData(nameof(Day1Part1MaxSumOfCalories))]

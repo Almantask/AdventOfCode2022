@@ -1,5 +1,4 @@
 ﻿using AdventOfCode.Common.Day;
-using AdventOfCode.Common.Extensions;
 
 namespace AdventOfCode.Day2
 {
