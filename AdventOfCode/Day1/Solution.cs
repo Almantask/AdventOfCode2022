@@ -14,7 +14,7 @@ namespace AdventOfCode.Day1
         {
             return Input
                 .ToElves(input)
-                .Max(e => e.Total);
+                .Max(e => e.TotalCalories);
         }
     }
 
@@ -25,9 +25,9 @@ namespace AdventOfCode.Day1
             const int countOfElvesWithHighestCalories = 3;
             return Input
                 .ToElves(input)
-                .OrderByDescending(elf => elf.Total)
+                .OrderByDescending(elf => elf.TotalCalories)
                 .Take(countOfElvesWithHighestCalories)
-                .Sum(elf => elf.Total);
+                .Sum(elf => elf.TotalCalories);
         }
     }
 
@@ -41,14 +41,11 @@ namespace AdventOfCode.Day1
 
     public class Elf
     {
-        public long Total { get; }
+        public long TotalCalories { get; }
 
-        private readonly long[] _calories;
-
-        public Elf(IEnumerable<long> calories)
+        public Elf(IEnumerable<long> foodCalories)
         {
-            _calories = calories.ToArray();
-            Total = _calories.Sum();
+            TotalCalories = foodCalories.Sum();
         }
     }
 }
