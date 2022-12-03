@@ -21,12 +21,22 @@ bb";
             inventory.Rucksacks.Should().BeEquivalentTo(expectedRucksacks);
         }
 
-        [Fact]
-        public void TotalPriorities_Returns_SumOfAllRucksackArrangementPriorities()
+        [Theory]
+        [InlineData("aa", 1, "Overlaps at a = 1")]
+        [InlineData("zz", 26, "Overlaps at z = 26")]
+        [InlineData("AA", 27, "Overlaps at A = 27")]
+        [InlineData("ZZ", 52, "Overlaps at Z = 52")]
+        [InlineData("aa,bb", 3, "Overlaps at a and b. a = 1, B = 2. 1+2 = 3")]
+        public void TotalPriorities_Returns_SumOfAllRucksackArrangementPriorities(string inventoryContent, int expectedTotalPriorities, string explanation)
         {
-            var inventory = new Inventory(new[] { new Rucksack("aa"), new Rucksack("bb") });
+            var rucksacks = inventoryContent
+                .Split(',')
+                .Select(content => new Rucksack(content))
+                .ToArray();
 
-            inventory.TotalPriorities.Should().Be(3, "Overlaps at a and b. a = 1, b = 2. 1+2 = 3");
+            var inventory = new Inventory(rucksacks);
+
+            inventory.TotalPriorities.Should().Be(expectedTotalPriorities, explanation);
         }
     }
 }

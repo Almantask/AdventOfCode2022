@@ -12,7 +12,7 @@ namespace AdventOfCode.Day3
     {
         public long Solve(string input)
         {
-            return 0;
+            return Inventory.Parse(input).TotalPriorities;
         }
     }
 
