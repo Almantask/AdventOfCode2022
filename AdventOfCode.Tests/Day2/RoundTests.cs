@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AdventOfCode.Day2;
 using Moq;
 
 namespace AdventOfCode.Tests.Day2
 {
     public class RoundTests
     {
-        private readonly RockPaperScissorsGame.Round _round;
-        
+
         private readonly Mock<RockPaperScissorsGame.IPlay> _play1;
         private readonly Mock<RockPaperScissorsGame.IPlay> _play2;
+
+        private const int Player1ShapePoints = 10;
+        private const int Player2ShapePoints = 20;
 
         public RoundTests()
         {
             _play1 = new Mock<RockPaperScissorsGame.IPlay>();
             _play2 = new Mock<RockPaperScissorsGame.IPlay>();
-
-            _round = new RockPaperScissorsGame.Round(_play1.Object, _play2.Object);
         }
 
         [Theory]
@@ -30,19 +26,28 @@ namespace AdventOfCode.Tests.Day2
                 .Setup(play => play.Against(_play2.Object))
                 .Returns(roundOutcome);
 
-            RockPaperScissorsGame.Round.Score score = new RockPaperScissorsGame.Round.Score(expectedPlayer1Points, expectedPlayer2Points);
+            _play1
+                .SetupGet(play => play.Points)
+                .Returns(Player1ShapePoints);
 
-            score.Play1.Should().Be(expectedPlayer1Points);
-            score.Play2.Should().Be(expectedPlayer2Points);
+            _play2
+                .SetupGet(play => play.Points)
+                .Returns(Player2ShapePoints);
+
+            var round = new RockPaperScissorsGame.Round(_play1.Object, _play2.Object);
+
+            RockPaperScissorsGame.Round.Score expectedScore = new RockPaperScissorsGame.Round.Score(expectedPlayer1Points, expectedPlayer2Points);
+
+            round.Points.Should().BeEquivalentTo(expectedScore);
         }
 
         public static IEnumerable<object[]> RoundExpectations
         {
             get
             {
-                yield return new object[] { RockPaperScissorsGame.Play.Outcome.Win, 6, 0 };
-                yield return new object[] { RockPaperScissorsGame.Play.Outcome.Draw, 3, 3 };
-                yield return new object[] { RockPaperScissorsGame.Play.Outcome.Loose, 0, 6 };
+                yield return new object[] { RockPaperScissorsGame.Play.Outcome.Win, 6 + Player1ShapePoints, 0 + Player2ShapePoints };
+                yield return new object[] { RockPaperScissorsGame.Play.Outcome.Draw, 3 + Player1ShapePoints, 3 + Player2ShapePoints };
+                yield return new object[] { RockPaperScissorsGame.Play.Outcome.Loose, 0 + Player1ShapePoints, 6 + Player2ShapePoints };
             }
         }
     }

@@ -1,7 +1,47 @@
-﻿namespace AdventOfCode.Tests.Day2;
+﻿using AdventOfCode.Common.Extensions;
+
+namespace AdventOfCode.Day2;
 
 public class RockPaperScissorsGame
 {
+    public int TotalScorePlayer1 { get; }
+
+    public RockPaperScissorsGame(IEnumerable<Round> rounds)
+    {
+        TotalScorePlayer1 = rounds.Sum(round => round.Points.Play1);
+    }
+
+    public static class StrategyGuide
+    {
+        private static readonly Dictionary<string, IPlay> _playAliases = new()
+        {
+            { "A", Play.Rock },
+            { "B", Play.Paper },
+            { "C", Play.Scissors }
+        };
+
+        private static readonly Dictionary<string, string> _counterAliases = new()
+        {
+            { "Y", "B" },
+            { "X", "C" },
+            { "Z", "A" }
+        };
+
+        public static Round[] ParseRoundsFrom(string strategyGuide)
+        {
+            return strategyGuide
+                .SplitByEndOfLine()
+                .Select(x => x.Split(' '))
+                .Select(x => ToAround(x[0], x[1]))
+                .ToArray();
+
+            static Round ToAround(string playAlias, string counterAlias)
+            {
+                return new Round(_playAliases[playAlias], _playAliases[_counterAliases[counterAlias]]);
+            }
+        }
+    }
+
     public class Round
     {
         public struct Score
@@ -18,13 +58,13 @@ public class RockPaperScissorsGame
 
         public Score Points { get; }
 
-        private readonly IPlay _play1;
-        private readonly IPlay _play2;
+        public IPlay Play1 {get;}
+        public IPlay Play2 { get; }
 
         public Round(IPlay play1, IPlay play2)
         {
-            _play1 = play1;
-            _play2 = play2;
+            Play1 = play1;
+            Play2 = play2;
             Points = CalculateScore(play1, play2);
         }
 
@@ -33,19 +73,20 @@ public class RockPaperScissorsGame
             var outcome = play1.Against(play2);
 
             const int maxPoints = (int)Play.Outcome.Win;
-            var play1Points = (int)outcome;
-            var play2Points = maxPoints - play1Points;
+            var play1OutcomePoints = (int)outcome;
+            var play2OutcomePoints = maxPoints - play1OutcomePoints;
 
-            return new Score(play1Points, play2Points);
+            return new Score(play1OutcomePoints + play1.Points, play2OutcomePoints + play2.Points);
         }
     }
 
     public interface IPlay
     {
         Play.Outcome Against(IPlay other);
+        int Points { get; }
     }
 
-    public class Play: IPlay
+    public class Play : IPlay
     {
         public static readonly Play Rock;
         public static readonly Play Paper;
@@ -78,7 +119,7 @@ public class RockPaperScissorsGame
             Loose = 0
         }
 
-        public int Points { get; private set; }
+        public int Points { get; }
         private IPlay CounterFor { get; set; }
 
         public Outcome Against(IPlay other)
