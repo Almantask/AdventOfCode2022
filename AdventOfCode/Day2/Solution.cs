@@ -23,7 +23,10 @@ namespace AdventOfCode.Day2
     {
         public long Solve(string input)
         {
-            return 0;
+            var guide = new RockPaperScissorsGame.StrategyGuideV2(input);
+            var game = new RockPaperScissorsGame(guide.Rounds);
+
+            return game.TotalScorePlayer2;
         }
     }
 }
