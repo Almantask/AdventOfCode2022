@@ -2,7 +2,50 @@
 
 public class RockPaperScissorsGame
 {
-    public class Play
+    public class Round
+    {
+        public struct Score
+        {
+            public readonly int Play1;
+            public readonly int Play2;
+
+            public Score(int play1, int play2)
+            {
+                Play1 = play1;
+                Play2 = play2;
+            }
+        }
+
+        public Score Points { get; }
+
+        private readonly IPlay _play1;
+        private readonly IPlay _play2;
+
+        public Round(IPlay play1, IPlay play2)
+        {
+            _play1 = play1;
+            _play2 = play2;
+            Points = CalculateScore(play1, play2);
+        }
+
+        private Score CalculateScore(IPlay play1, IPlay play2)
+        {
+            var outcome = play1.Against(play2);
+
+            const int maxPoints = (int)Play.Outcome.Win;
+            var play1Points = (int)outcome;
+            var play2Points = maxPoints - play1Points;
+
+            return new Score(play1Points, play2Points);
+        }
+    }
+
+    public interface IPlay
+    {
+        Play.Outcome Against(IPlay other);
+    }
+
+    public class Play: IPlay
     {
         public static readonly Play Rock;
         public static readonly Play Paper;
@@ -36,9 +79,9 @@ public class RockPaperScissorsGame
         }
 
         public int Points { get; private set; }
-        private Play CounterFor { get; set; }
+        private IPlay CounterFor { get; set; }
 
-        public Outcome Against(Play other)
+        public Outcome Against(IPlay other)
         {
             if (other == this)
             {
