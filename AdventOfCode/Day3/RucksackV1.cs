@@ -1,6 +1,9 @@
 ﻿namespace AdventOfCode.Day3;
 
-public class Rucksack
+/// <summary>
+/// Rucksack with a single line content, split in two compartments
+/// </summary>
+public class Rucksack : ISingleOverlap
 {
     public char Overlap { get; }
 

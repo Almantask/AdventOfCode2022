@@ -2,7 +2,7 @@
 
 namespace AdventOfCode.Tests.Day3
 {
-    public class RucksackTests
+    public class RucksackV1Tests
     {
         [Theory]
         [InlineData("aa", 'a')]
