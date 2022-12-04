@@ -9,28 +9,28 @@ namespace AdventOfCode.Tests.Day4
         // How many ranges fully contain each other?
 
         [Theory]
-        [MemberData(nameof(Day1Part1MaxSumOfCalories))]
+        [MemberData(nameof(Part1Expectation))]
         public void Part1_Solve_Returns_CountOfFullOverlapsInPairs(string calories, long expectedMax)
         {
             var part1 = new Part1();
 
-            var measureIncreases = part1.Solve(calories);
+            var overlaps = part1.Solve(calories);
 
-            measureIncreases.Should().Be(expectedMax);
+            overlaps.Should().Be(expectedMax);
         }
 
         [Theory]
-        [MemberData(nameof(Day1Part2ExpectedSumOfTop3SumsOfCalories))]
-        public void Part2_Solve_Returns_IncreasesCountOverAWindowOf3(string calories, long expectedTop3Max)
+        [MemberData(nameof(Part2Expectation))]
+        public void Part2_Solve_Returns_CountOfOverlapsInPairs(string calories, long expectedTop3Max)
         {
             var part2 = new Part2();
 
-            var measureIncreases = part2.Solve(calories);
+            var overlaps = part2.Solve(calories);
 
-            measureIncreases.Should().Be(expectedTop3Max);
+            overlaps.Should().Be(expectedTop3Max);
         }
 
-        public static IEnumerable<object[]> Day1Part1MaxSumOfCalories
+        public static IEnumerable<object[]> Part1Expectation
         {
             get
             {
@@ -38,11 +38,11 @@ namespace AdventOfCode.Tests.Day4
             }
         }
 
-        public static IEnumerable<object[]> Day1Part2ExpectedSumOfTop3SumsOfCalories
+        public static IEnumerable<object[]> Part2Expectation
         {
             get
             {
-                yield return Expect(day: 4, file: "Example", result: 45000);
+                yield return Expect(day: 4, file: "Example", result: 4);
             }
         }
     }

@@ -5,7 +5,7 @@ namespace AdventOfCode.Tests.Day2
     public class Day2Tests
     {
         [Theory]
-        [MemberData(nameof(Day1Part1MaxSumOfCalories))]
+        [MemberData(nameof(Part1Expectation))]
         public void Part1_Solve_Returns_TotalScoreOfPlayer2(string strategyGuide, long expectedTotalScore)
         {
             var part1 = new Part1();
@@ -16,7 +16,7 @@ namespace AdventOfCode.Tests.Day2
         }
 
         [Theory]
-        [MemberData(nameof(Day1Part2ExpectedSumOfTop3SumsOfCalories))]
+        [MemberData(nameof(Part2Expectation))]
         public void Part2_Solve_ReturnsTotalScoreOfPlayer2(string strategyGuide, long expectedTotalScore)
         {
             var part2 = new Part2();
@@ -26,7 +26,7 @@ namespace AdventOfCode.Tests.Day2
             measureIncreases.Should().Be(expectedTotalScore);
         }
 
-        public static IEnumerable<object[]> Day1Part1MaxSumOfCalories
+        public static IEnumerable<object[]> Part1Expectation
         {
             get
             {
@@ -34,7 +34,7 @@ namespace AdventOfCode.Tests.Day2
             }
         }
 
-        public static IEnumerable<object[]> Day1Part2ExpectedSumOfTop3SumsOfCalories
+        public static IEnumerable<object[]> Part2Expectation
         {
             get
             {
