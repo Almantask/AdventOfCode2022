@@ -34,6 +34,13 @@ public class SectionRange
             rangeToFit = this;
         }
 
-        return rangeToFit.IdFrom >= biggerRange.IdFrom && rangeToFit.IdTo <= biggerRange.IdTo;
+        return rangeToFit.IdFrom >= biggerRange.IdFrom &&
+               rangeToFit.IdTo <= biggerRange.IdTo;
+    }
+
+    public bool IsOverlapWith(SectionRange other)
+    {
+        return (this.IdFrom >= other.IdFrom && this.IdFrom <= other.IdTo) ||
+               (this.IdTo >= other.IdFrom && this.IdTo <= other.IdTo);
     }
 }
