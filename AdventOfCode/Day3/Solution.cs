@@ -21,7 +21,8 @@ namespace AdventOfCode.Day3
     {
         public long Solve(string input)
         {
-            return 0;
+            var groups = Inventory.ParseGroupsOf3FromContent(input);
+            return new Inventory(groups).TotalPriorities;
         }
     }
 }

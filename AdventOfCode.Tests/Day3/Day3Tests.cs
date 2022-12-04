@@ -38,7 +38,7 @@ namespace AdventOfCode.Tests.Day3
         {
             get
             {
-                yield return Expect(day: 3, file: "Example", result: 157);
+                yield return Expect(day: 3, file: "Example", result: 70);
             }
         }
     }
