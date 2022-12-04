@@ -10,7 +10,7 @@ namespace AdventOfCode.Tests.Day4
 
         [Theory]
         [MemberData(nameof(Day1Part1MaxSumOfCalories))]
-        public void Part1_Solve_Returns_MaxSumOfCalories(string calories, long expectedMax)
+        public void Part1_Solve_Returns_CountOfFullOverlapsInPairs(string calories, long expectedMax)
         {
             var part1 = new Part1();
 
@@ -34,7 +34,7 @@ namespace AdventOfCode.Tests.Day4
         {
             get
             {
-                yield return Expect(day: 1, file: "Example", result: 2);
+                yield return Expect(day: 4, file: "Example", result: 2);
             }
         }
 
@@ -42,7 +42,7 @@ namespace AdventOfCode.Tests.Day4
         {
             get
             {
-                yield return Expect(day: 1, file: "Example", result: 45000);
+                yield return Expect(day: 4, file: "Example", result: 45000);
             }
         }
     }
