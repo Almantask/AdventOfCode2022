@@ -41,9 +41,9 @@ public class SectionRange
 
     public bool IsOverlapWith(SectionRange other)
     {
-        var isSomeOverlap = this.IdFrom.IsBetween(other.IdFrom, other.IdTo) ||
-                            this.IdTo.IsBetween(other.IdFrom, other.IdTo) ||
-                            MiddlePoint.IsBetween(other.IdFrom, other.IdTo) || // Either middle point inside;
+        var isSomeOverlap = this.IdFrom.IsBetween(other.IdFrom, other.IdTo) || // Start is inside another
+                            this.IdTo.IsBetween(other.IdFrom, other.IdTo) || // End is inside another
+                            MiddlePoint.IsBetween(other.IdFrom, other.IdTo) || // Middle point inside;
                             other.MiddlePoint.IsBetween(this.IdFrom, this.IdTo); // Either middle point inside;
         return isSomeOverlap;
     }
