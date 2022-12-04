@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode.Day4;
 
-public struct SectionRange
+public class SectionRange
 {
     public int IdFrom { get; }
     public int IdTo { get; }
