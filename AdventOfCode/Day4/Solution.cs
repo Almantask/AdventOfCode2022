@@ -20,7 +20,9 @@ namespace AdventOfCode.Day4
     {
         public long Solve(string input)
         {
-            return 0;
+            var pairs = Camp.ParseElfPairsFromAssignments(input);
+            return pairs.Count(pair => pair.IsSomeOverlap);
+
         }
     }
 }

@@ -2,6 +2,7 @@
 
 public class SectionRange
 {
+    public int MiddlePoint => (IdFrom + IdTo) / 2;
     public int IdFrom { get; }
     public int IdTo { get; }
 
@@ -40,7 +41,9 @@ public class SectionRange
 
     public bool IsOverlapWith(SectionRange other)
     {
-        return (this.IdFrom >= other.IdFrom && this.IdFrom <= other.IdTo) ||
-               (this.IdTo >= other.IdFrom && this.IdTo <= other.IdTo);
+        return (this.IdFrom >= other.IdFrom && this.IdFrom <= other.IdTo) || // To the right
+               (this.IdTo >= other.IdFrom && this.IdTo <= other.IdTo) || // To the left
+               (this.MiddlePoint >= other.IdFrom && this.MiddlePoint <= other.MiddlePoint) || // Either middle point inside;
+               (other.MiddlePoint >= this.IdFrom && this.MiddlePoint <= other.IdTo); // Either middle point inside;
     }
 }
