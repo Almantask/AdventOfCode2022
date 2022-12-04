@@ -2,15 +2,8 @@
 
 namespace AdventOfCode.Day4
 {
-    public class Camp
+    public static class Camp
     {
-        public int CountOfRangesWithFullOverlap { get; }
-
-        public Camp(IEnumerable<ElfPair> pairs)
-        {
-            CountOfRangesWithFullOverlap = pairs.Count(pair => pair.IsFullOverlap);
-        }
-
         public static IEnumerable<ElfPair> ParseElfPairsFromAssignments(string assignments)
         {
             return assignments

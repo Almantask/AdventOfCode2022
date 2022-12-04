@@ -12,7 +12,7 @@ namespace AdventOfCode.Day4
         public long Solve(string input)
         {
             var pairs = Camp.ParseElfPairsFromAssignments(input);
-            return new Camp(pairs).CountOfRangesWithFullOverlap;
+            return pairs.Count(pair => pair.IsFullOverlap);
         }
     }
 
