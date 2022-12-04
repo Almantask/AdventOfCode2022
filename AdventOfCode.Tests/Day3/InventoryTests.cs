@@ -1,24 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AdventOfCode.Day3;
+﻿using AdventOfCode.Day3;
 
 namespace AdventOfCode.Tests.Day3
 {
     public class InventoryTests
     {
         [Fact]
-        public void Parse_ReturnsRucksackForEachLine()
+        public void ParseRucksacksFromContent_ReturnsRucksackForEachLine()
         {
             var inventoryContent = @"aa
 bb";
-            var inventory = Inventory.Parse(inventoryContent);
+            var rucksacks = Inventory.ParseRucksacksFromContent(inventoryContent);
 
             Rucksack[] expectedRucksacks = { new("aa"), new("bb") };
 
-            inventory.Rucksacks.Should().BeEquivalentTo(expectedRucksacks);
+            rucksacks.Should().BeEquivalentTo(expectedRucksacks);
+        }
+
+        [Fact]
+        public void ParseGroupsOf3FromContent_ReturnsGroupsOf3ForEvery3Lines()
+        {
+            var inventoryContent = @"aa
+ab
+ca
+bb
+ba
+bz";
+            var groupsOf3FromContent = Inventory.ParseGroupsOf3FromContent(inventoryContent);
+
+            GroupOf3Rucksacks[] expectedGroups = { new("ab", "ca", "ba"), new("bb", "ba", "bz") };
+
+            groupsOf3FromContent.Should().BeEquivalentTo(expectedGroups);
         }
 
         [Theory]

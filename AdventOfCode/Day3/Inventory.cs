@@ -26,25 +26,38 @@ namespace AdventOfCode.Day3
             }
         }
 
+        public IEnumerable<ISingleOverlap> Overlapables { get; }
         public int TotalPriorities { get; }
 
-        public Inventory(IEnumerable<ISingleOverlap> rucksacks)
+        public Inventory(IEnumerable<ISingleOverlap> overlapables)
         {
-            TotalPriorities = rucksacks
+            Overlapables = overlapables;
+            TotalPriorities = Overlapables
                 .Select(rucksack => rucksack.Overlap)
                 .Sum(overlap => _priorities[overlap]);
         }
 
-        public static Inventory Parse(string inventoryContent)
+        public static IEnumerable<Rucksack> ParseRucksacksFromContent(string inventoryContent)
         {
             var rucksacks = inventoryContent
                 .SplitByEndOfLine()
                 .Select(x => new Rucksack(x))
                 .ToArray();
 
-            return new Inventory(rucksacks);
+            return rucksacks;
         }
 
-        // Todo - a different kind of parse using groups of 3.
+        public static IEnumerable<GroupOf3Rucksacks> ParseGroupsOf3FromContent(string inventoryContent)
+        {
+            var rucksacks = inventoryContent.SplitByEndOfLine().ToArray();
+            var groups = new List<GroupOf3Rucksacks>();
+            for (int i = 0; i < rucksacks.Length; i += 3)
+            {
+                var group = new GroupOf3Rucksacks(rucksacks[i], rucksacks[i + 1], rucksacks[i + 2]);
+                groups.Add(group);
+            }
+
+            return groups;
+        }
     }
 }

@@ -12,7 +12,8 @@ namespace AdventOfCode.Day3
     {
         public long Solve(string input)
         {
-            return Inventory.Parse(input).TotalPriorities;
+            var rucksacks = Inventory.ParseRucksacksFromContent(input);
+            return new Inventory(rucksacks).TotalPriorities;
         }
     }
 
