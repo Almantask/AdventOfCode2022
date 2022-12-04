@@ -13,6 +13,6 @@ public class Rucksack : ISingleOverlap
         var compartment1 = rucksackContent.Substring(mid).ToCharArray();
         var compartment2 = rucksackContent.Substring(0, mid).ToCharArray();
 
-        Overlap = compartment1.Intersect(compartment2).First();
+        Overlap = compartment1.Intersect(compartment2).Single();
     }
 }
