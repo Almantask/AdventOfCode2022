@@ -30,6 +30,7 @@ public class SectionRangeTests
     [InlineData(2, 8, 3, 7, true)]
     [InlineData(6, 6, 4, 6, true)]
     [InlineData(2, 6, 4, 8, true)]
+    [InlineData(1, 10, 6, 9, true)]
     public void IsOverlapWith_Returns_Whether_BothRangesAreMutuallyExclusive(int range1Start, int range1End, int range2Start, int range2End, bool expectedIsFullOverlap)
     {
         var range1 = new SectionRange(range1Start, range1End);
