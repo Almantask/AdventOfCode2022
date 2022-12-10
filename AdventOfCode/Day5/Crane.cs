@@ -41,13 +41,25 @@ public class Crane9001 : Crane
     {
         for (var i = 0; i < instruction.CountToMove; i++)
         {
-            var crateToMove = CratesMap[instruction.From, CrateCountsPerColumn[instruction.From] - 1];
             // 3 boxes, lift 3
             // i = 2
             // Sequence: 0 1 2
             var boxInColumnFrom = CrateCountsPerColumn[instruction.From] - instruction.CountToMove + i;
-            CratesMap[instruction.From, boxInColumnFrom] = null;
+            var crateToMove = CratesMap[instruction.From, boxInColumnFrom];
+
             CratesMap[instruction.To, CrateCountsPerColumn[instruction.To]] = crateToMove;
+
+            // All others move one down
+            
+            for (var j = boxInColumnFrom; j < CratesMap.GetLength(1); j++)
+            {
+                char? next = null;
+                if (j + 1 < CratesMap.GetLength(1))
+                {
+                    next = CratesMap[instruction.From, j + 1];
+                }
+                CratesMap[instruction.From, j] = next;
+            }
 
             // If using string - it could simply be string length.
             CrateCountsPerColumn[instruction.From]--;
