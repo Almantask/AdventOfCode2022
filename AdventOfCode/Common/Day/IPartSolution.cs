@@ -1,7 +1,7 @@
 ﻿namespace AdventOfCode.Common.Day
 {
-    public interface IPartSolution
+    public interface IPartSolution<TResult>
     {
-        long Solve(string input);
+        TResult Solve(string input);
     }
 }

@@ -2,12 +2,12 @@
 
 namespace AdventOfCode.Day2
 {
-    public class Solution : AdventOfCodeDay<Part1, Part2>
+    public class Solution : AdventOfCodeDay<Part1, Part2, long>
     {
         protected override int Day => 2;
     }
 
-    public class Part1 : IPartSolution
+    public class Part1 : IPartSolution<long>
     {
         public long Solve(string input)
         {
@@ -18,7 +18,7 @@ namespace AdventOfCode.Day2
         }
     }
 
-    public class Part2 : IPartSolution
+    public class Part2 : IPartSolution<long>
     {
         public long Solve(string input)
         {

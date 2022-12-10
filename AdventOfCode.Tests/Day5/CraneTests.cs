@@ -6,22 +6,71 @@ namespace AdventOfCode.Tests.Day5
     {
         [Theory]
         [MemberData(nameof(CraneInstructionExpectations))]
-        public void Move_TakesAwaySpecifiedCountOfCratesFromOnePosition_AndAddsToAnother(int[] cratesMap, Crane.Instruction instruction, int[] expectedMapAfterMove)
+        public void Move_WhenCrane9000_MovesOneByOne(char?[,] cratesMap, Crane.Instruction instruction, char?[,] expectedMapAfterMove)
         {
-            var crane = new Crane(cratesMap);
+            var crane = new Crane9000(cratesMap);
 
             crane.Move(instruction);
 
-            cratesMap.Should().BeEquivalentTo(expectedMapAfterMove);
+            crane.CratesMap.Should().BeEquivalentTo(expectedMapAfterMove);
+        }
+
+        [Theory]
+        [MemberData(nameof(CraneInstructionExpectations))]
+        public void Move_WhenCrane9001_AllSpecified(char?[,] cratesMap, Crane.Instruction instruction, char?[,] expectedMapAfterMove)
+        {
+            var crane = new Crane9000(cratesMap);
+
+            crane.Move(instruction);
+
+            crane.CratesMap.Should().BeEquivalentTo(expectedMapAfterMove);
+        }
+
+        [Fact]
+        public void TopCrates_ReturnsLastCrateInEachColumn()
+        {
+            var map = new char?[,] { {'c', null}, {'a', 'b'} };
+
+            var crane = new Crane9000(map);
+
+            crane.TopCrates.Should().Be("cb");
         }
 
         public static IEnumerable<object[]> CraneInstructionExpectations
         {
             get
             {
-                yield return new object[] { new[] { 0, 2 }, new Crane.Instruction(1, 1, 0), new[] { 1, 1 } };
-                yield return new object[] { new[] { 2, 0 }, new Crane.Instruction(1, 0, 1), new[] { 1, 1 } };
-                yield return new object[] { new[] { 2, 0 }, new Crane.Instruction(2, 0, 1), new[] { 0, 2 } };
+                // Before:
+                //   b
+                //   a
+                
+                // After:
+                // a b
+                yield return new object[] { new char?[,] { {null, null}, {'a', 'b'}  }, new Crane.Instruction(1, 1, 0), new char?[,] { {'b', null}, {'a', null}  } };
+                
+                // Does reverse work?
+                yield return new object[] { new char?[,] { {'a', 'b'}, { null, null } }, new Crane.Instruction(1, 0, 1), new char?[,] { {'a', null}, { 'b', null } } };
+
+                // Before:
+                //  b d
+                //  a c
+
+                // After:
+                // a b
+                //   d
+                //   c
+                yield return new object[] { new char?[,] { {'a', 'b'}, { 'c', 'd' } }, new Crane.Instruction(1, 0, 1), new char?[,] { {'a', null, null, null}, { 'c', 'd', 'b', null } } };
+
+                // Before:
+                // b d
+                // a c
+
+                // After:
+                //   a
+                //   b
+                //   d
+                //   c
+                yield return new object[] { new char?[,] { {'a', 'b'}, { 'c', 'd' } }, new Crane.Instruction(2, 0, 1), new char?[,] { {null, null, null, null}, { 'c', 'd', 'b', 'a' } } };
             }
         }
     }

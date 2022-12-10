@@ -16,7 +16,7 @@ namespace AdventOfCode.Tests.Day5
 
             var instruction = Crane.Instruction.Parse(instructionAsString);
 
-            var expectedInstruction = new Crane.Instruction(2, 2, 8);
+            var expectedInstruction = new Crane.Instruction(2, 1, 7);
             instruction.Should().BeEquivalentTo(expectedInstruction);
         }
     }
